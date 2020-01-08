@@ -24,9 +24,7 @@ def part2(present_list):
 
 def main():
     present_list = load_input()
-    # should print 1586300
     part1(present_list)
-    # should print 3737498
     part2(present_list)
 
 if __name__ == "__main__":
