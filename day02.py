@@ -10,25 +10,23 @@ def load_input():
         return output
 
 def part1(present_list):
-    initial_calc = []
-    for present in present_list:
-        x,y,z = present
-        initial_calc.append((x*y, x*z, y*z))
-    final_calc = 0
-    for calc in initial_calc:
-        final_calc += min(calc) + sum(calc) * 2
+    initial_calc = [(x*y, x*z, y*z) for x,y,z in present_list]
+    final_calc = sum(min(calc) + sum(calc) * 2 for calc in initial_calc)
     print(final_calc)
 
 def part2(present_list):
-    initial_calc = []
-    for present in present_list:
-        smallest_two = nsmallest(3, present)
-        initial_calc.append(present[0]*present[1]*present[2] + (smallest_two[0]+smallest_two[1])*2)
+    initial_calc = [
+        present[0] * present[1] * present[2] + 
+        (nsmallest(3, present)[0] + nsmallest(3, present)[1]) * 2 
+        for present in present_list
+    ]
     print(sum(initial_calc))
 
 def main():
     present_list = load_input()
+    # should print 1586300
     part1(present_list)
+    # should print 3737498
     part2(present_list)
 
 if __name__ == "__main__":
